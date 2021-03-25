@@ -3,15 +3,18 @@ from email.header import Header
 from smtplib import SMTP_SSL
 import requests
 import json
+import argparse
+
+
 
 
 
 #sender_qq为发件人的qq号码
-sender_qq = ${{ secrets.QQ }}
+sender_qq = ''
 #pwd为qq邮箱的授权码
-pwd = ${{ secrets.PWD }}
+pwd = ''
 #收件人邮箱receiver
-receiver=${{ secrets.REC }}
+receiver='' 
 mail_content = ''
 #邮件标题
 mail_title = ''
@@ -53,5 +56,16 @@ def rang_send_email(count):
      send_mail(sender_qq=sender_qq,pwd=pwd,\
      receiver=receiver,mail_title=mail_title,\
      mail_content=mail_content)
+
+
+parser = argparse.ArgumentParser()
+parser.description='please enter two parameters a and b ...'
+parser.add_argument("-a", "--inputA", help="this is parameter a", dest="argA", type=str)
+parser.add_argument("-b", "--inputB", help="this is parameter b", dest="argB", type=str)
+parser.add_argument("-c", "--inputC", help="this is parameter c", dest="argC", type=str)
+args = parser.parse_args()
+sender_qq = args.argA
+pwd = args.argB
+receiver = args.argC
 
 rang_send_email(1)
