@@ -3,8 +3,7 @@ from email.header import Header
 from smtplib import SMTP_SSL
 import requests
 import json
-from apscheduler.schedulers.blocking import BlockingScheduler
-from datetime import datetime
+
 
 
 #sender_qq为发件人的qq号码
@@ -55,13 +54,4 @@ def rang_send_email(count):
      receiver=receiver,mail_title=mail_title,\
      mail_content=mail_content)
 
-def job():
-    print datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    rang_send_email(1)
-
-def submit_job():
-    scheduler = BlockingScheduler()
-    scheduler.add_job(job, 'cron', day_of_week='1-5', hour=15, minute=49)
-    scheduler.start()
-
-submit_job()
+rang_send_email(1)
