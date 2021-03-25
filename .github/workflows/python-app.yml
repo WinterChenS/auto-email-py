@@ -33,5 +33,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        python auto-email-py.py
+        python auto-email-py.py -a ${{ secrets.QQ }} -b ${{ secrets.PWD }} -c ${{ secrets.REC }}
         pytest
